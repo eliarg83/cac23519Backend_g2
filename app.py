@@ -81,31 +81,11 @@ def delete_producto(id):
     db.session.commit()  # Guarda los cambios en la base de datos
     return producto_schema.jsonify(producto)  # Retorna el JSON del producto eliminado
 
-@app.route("/productos", methods=["POST"])  # Endpoint para crear un producto
-def create_producto():
-    
-    nombre = request.json["nombre"]  # Obtiene el nombre del producto del JSON proporcionado
-    precio = request.json["precio"]  # Obtiene el precio del producto del JSON proporcionado
-    stock = request.json["stock"]  # Obtiene el stock del producto del JSON proporcionado
-    imagen = request.json["imagen"]  # Obtiene la imagen del producto del JSON proporcionado
-    new_producto = Producto(nombre, precio, stock, imagen)  # Crea un nuevo objeto Producto con los datos proporcionados
-    db.session.add(new_producto)  # Agrega el nuevo producto a la sesión de la base de datos
-    db.session.commit()  # Guarda los cambios en la base de datos
-    return producto_schema.jsonify(new_producto)  # Retorna el JSON del nuevo producto creado
 
-@app.route("/productos/<id>", methods=["PUT"])  # Endpoint para actualizar un producto
-def update_producto(id):
-    
-    producto = Producto.query.get(id)  # Obtiene el producto existente con el ID especificado
+#Crear post
 
-    # Actualiza los atributos del producto con los datos proporcionados en el JSON
-    producto.nombre = request.json["nombre"]
-    producto.precio = request.json["precio"]
-    producto.stock = request.json["stock"]
-    producto.imagen = request.json["imagen"]
 
-    db.session.commit()  # Guarda los cambios en la base de datos
-    return producto_schema.jsonify(producto)  # Retorna el JSON del producto actualizado
+#Crear put
 
 
 # Programa Principal
